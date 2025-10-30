@@ -5,9 +5,11 @@ import { db } from "../firebaseConfig";
 export interface Orden {
   id: string;
   cliente: string;
-  pastel: string;
-  fechaEntrega: Date;
   estatus: number;
+  fechaCreado: Date;
+  fechaEntrega: Date;
+  foto: string;
+  pastel: string;
   total: number;
 }
 
@@ -56,9 +58,11 @@ export const useOrdenes = () => {
           const orden: Orden = {
             id: doc.id,
             cliente: data.cliente || "Sin nombre",
-            pastel: data.pastel || "Sin descripción",
-            fechaEntrega: f,
             estatus: data.estatus ?? 0,
+            fechaCreado: f,
+            fechaEntrega: f,
+            foto: data.foto || '',
+            pastel: data.pastel || "Sin descripción",
             total: data.total ?? 0,
           };
 
